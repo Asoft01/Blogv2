@@ -1,10 +1,11 @@
 
-<?php include "includes/header.php"; ?>
+<?php include "includes/admin_header.php"; ?>
     <div id="wrapper">
+    <?php //if($connection) echo "conn"; ?>
 
         <!-- Navigation -->
         
-        <?php include "includes/navigation.php"; ?>
+        <?php include "includes/admin_navigation.php"; ?>
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -16,7 +17,6 @@
                             Welcome to Admin
                             <small>Author</small>
                         </h1>
-                       
                     </div>
                 </div>
                 <!-- /.row -->
@@ -24,6 +24,5 @@
             </div>
             <!-- /.container-fluid -->
         </div>
-
 <!-- /#page-wrapper -->
-<?php include "includes/footer.php"; ?>
+<?php include "includes/admin_footer.php"; ?>
