@@ -3,6 +3,7 @@ if(isset($_GET['p_id'])){
     // echo $_GET['p_id'];
     $the_post_id = $_GET['p_id'];
 }
+
  $query = "SELECT * FROM posts where post_id = $the_post_id";
  $select_posts_by_id = mysqli_query($connection, $query);
     while($row = mysqli_fetch_assoc($select_posts_by_id)){
@@ -25,46 +26,32 @@ if(isset($_GET['p_id'])){
        $post_title =      $_POST['post_title'];
        $post_category_id =$_POST['post_category']; 
        $post_status =     $_POST['post_status'];
-       $form_post_image =      $_FILES['image']['name'];
+       $post_image =      $_FILES['image']['name'];
        $post_image_temp = $_FILES['image']['tmp_name'];
        $post_content =    $_POST['post_content'];
        $post_tags =       $_POST['post_tags'];
-       
-       if(empty($form_post_image)){ // Another image was not selected
-            $form_post_image = $post_image;
-        } else { // New image was selected
-            move_uploaded_file($post_image_temp, "../images/$form_post_image");
-        }
-        
-        // if(empty($form_post_image)){
-        //     $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
-        //     $select_image = mysqli_query($connection, $query);
-        //     while($row = mysqli_fetch_array($select_image)){
-        //         $form_post_image = $row['post_image'];
-        //     }
-        // }
-
+       move_uploaded_file($post_image_temp, "../images/$post_image");
 
        $query = "UPDATE posts SET ";
-       $query .= "post_title = '{$post_title}', ";
-       $query .= "post_category_id = '{$post_category_id}', ";
+       $query .= "post_title = 'Hsdnbhsb', ";
+       $query .= "post_category_id = '30', ";
        $query .= "post_date = now(), ";
        $query .= "post_author = '{$post_author}', ";
        $query .= "post_status = '{$post_status}', ";
        $query .= "post_tags = '{$post_tags}', ";
        $query .= "post_content = '{$post_content}', ";
-       $query .= "post_image = '{$form_post_image}' ";
+       $query .= "post_image = '{$post_image}' ";
        $query .= "WHERE post_id = {$the_post_id} ";
-       
+    
+       if(empty($post_image)){
+            $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
+            $select_image = mysqli_query($connection, $query);
+            while($row = mysqli_fetch_array($select_image)){
+                $post_image = $row['post_image'];
+            }
+        }
+        
        $update_post = mysqli_query($connection, $query);
-       if ($update_post) {
-        //    echo "Post Updated";
-        //    header("Location: posts.php?source=edit_post&p_id=$the_post_id");
-        echo "<p class='bg-success'> Post Updated. <a href='../post.php?p_id={$the_post_id}'>View Post </a> or <a href='posts.php'> Edit More Post </a></p>";
-       } else {
-           exit('Post not updated');
-       }
-       
     //    confirmQuery($update_post);
     }
 

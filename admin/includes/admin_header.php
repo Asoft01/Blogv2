@@ -1,9 +1,19 @@
+<?php include "../includes/db.php"; ?>
+<?php include "./functions.php"; ?>
 <?php ob_start(); ?>
 <?php session_start(); ?>
-<?php include "../includes/db.php"; ?>
-<?php include "functions.php"; ?>
 
-
+<?php 
+    if(!isset($_SESSION['user_role'])){
+        header("Location: ../index.php");
+    }
+    // echo(isset($_SESSION['user_role'])); die;
+    // if(isset($_SESSION['user_role'])){
+    //     if($_SESSION['user_role'] !== 'admin'){
+    //         header("Location: ../index.php");
+    //     }
+    // }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +42,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 </head>
 
 <body>
